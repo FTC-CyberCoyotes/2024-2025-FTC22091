@@ -53,6 +53,8 @@ import org.firstinspires.ftc.robotcore.external.navigation.CurrentUnit;
  * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list
  */
 
+/*** Everybot Code ***/
+
 @TeleOp(name="TeleOp Control", group="Teleop")
 
 public class TeleOpControlOpMode extends OpMode
@@ -72,19 +74,21 @@ public class TeleOpControlOpMode extends OpMode
     private DcMotor extension = null;
     private DcMotorEx pivot = null;
 
+    // TODO Test intake power
     private double INTAKE_IN_POWER = 1.0;
     private double INTAKE_OUT_POWER = -1.0;
     private double INTAKE_OFF_POWER = 0.0;
 
     private double intakePower = INTAKE_OFF_POWER;
 
-
-    private double EXTENSION_OUT_POWER = 1.0;
-    private double EXTENSION_IN_POWER = -1.0;
+    // TODO Test extension power
+    private double EXTENSION_OUT_POWER = 0.25;
+    private double EXTENSION_IN_POWER = -0.25;
 
     private int pivot_target_pos;
     private int pivot_home_pos;
 
+    // TODO Test the pivot powers
     private double PIVOT_UP_POWER = 0.25;
     private double PIVOT_DOWN_POWER = -0.0125;
     private double PIVOT_HOLD_POWER = 0.001;
