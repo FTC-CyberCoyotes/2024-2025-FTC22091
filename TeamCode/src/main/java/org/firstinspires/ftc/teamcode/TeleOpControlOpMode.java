@@ -54,8 +54,6 @@ import org.firstinspires.ftc.robotcore.external.navigation.CurrentUnit;
  * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list
  */
 
-@Disabled
-
 /*** Everybot Code ***/
 
 @TeleOp(name="EVERYBOT", group="Teleop")
@@ -66,37 +64,37 @@ public class TeleOpControlOpMode extends OpMode
     private ElapsedTime runtime = new ElapsedTime();
 
     // Declare drive motors
-    private CRServo leftFrontDrive = null;
-    private DcMotor leftBackDrive = null;
-    private CRServo rightFrontDrive = null;
-    private DcMotor rightBackDrive = null;
+    private DcMotor leftFront = null;
+    private DcMotor leftBack = null;
+    private DcMotor rightFront = null;
+    private DcMotor rightBack = null;
 
     // Declare end-effector members
-    private CRServo intake = null;
-    //private Ser = null;
-    private DcMotor extension = null;
-    private DcMotorEx pivot = null;
+//    private CRServo intake = null;
+//    private Ser = null;
+//    private DcMotor extension = null;
+//    private DcMotorEx pivot = null;
 
     // TODO Test intake power
-    private double INTAKE_IN_POWER = 1.0;
-    private double INTAKE_OUT_POWER = -1.0;
-    private double INTAKE_OFF_POWER = 0.0;
-
-    private double intakePower = INTAKE_OFF_POWER;
+//    private double INTAKE_IN_POWER = 1.0;
+//    private double INTAKE_OUT_POWER = -1.0;
+//    private double INTAKE_OFF_POWER = 0.0;
+//
+//    private double intakePower = INTAKE_OFF_POWER;
 
     // TODO Test extension power
-    private double EXTENSION_OUT_POWER = 0.25;
-    private double EXTENSION_IN_POWER = -0.25;
-
-    private int pivot_target_pos;
-    private int pivot_home_pos;
+//    private double EXTENSION_OUT_POWER = 0.25;
+//    private double EXTENSION_IN_POWER = -0.25;
+//
+//    private int pivot_target_pos;
+//    private int pivot_home_pos;
 
     // TODO Test the pivot powers
-    private double PIVOT_UP_POWER = 0.25;
-    private double PIVOT_DOWN_POWER = -0.0125;
-    private double PIVOT_HOLD_POWER = 0.001;
-    private enum PivotModes {UP, HOLD, DOWN};
-    private PivotModes pivotMode;
+//    private double PIVOT_UP_POWER = 0.25;
+//    private double PIVOT_DOWN_POWER = -0.0125;
+//    private double PIVOT_HOLD_POWER = 0.001;
+//    private enum PivotModes {UP, HOLD, DOWN};
+//    private PivotModes pivotMode;
     /*
      * Code to run ONCE when the driver hits INIT
      */
@@ -117,19 +115,19 @@ public class TeleOpControlOpMode extends OpMode
 //        pivot = hardwareMap.get(DcMotorEx.class, "pivot");
 
         // TODO: Make sure all motors are facing the correct direction. Go one at a time.
-        leftFrontDrive.setDirection(CRServo.Direction.REVERSE);
-        leftBackDrive.setDirection(DcMotor.Direction.REVERSE);
-        rightFrontDrive.setDirection(CRServo.Direction.FORWARD);
-        rightBackDrive.setDirection(DcMotor.Direction.FORWARD);
+//        leftFront.setDirection(DcMotor.Direction.REVERSE);
+//        leftBack.setDirection(DcMotor.Direction.REVERSE);
+//        rightFront.setDirection(DcMotor.Direction.FORWARD);
+//        rightBack.setDirection(DcMotor.Direction.FORWARD);
 
-        intake.setDirection(CRServo.Direction.FORWARD); // Forward should INTAKE.
-        extension.setDirection(DcMotor.Direction.REVERSE); // Forward should EXTEND.
-        pivot.setDirection(DcMotor.Direction.REVERSE); // Forward should pivot UP, or away from the stowed position.
-
-//        pivot.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        extension.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        pivot.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        pivot_home_pos = 0;
+//        intake.setDirection(CRServo.Direction.FORWARD); // Forward should INTAKE.
+//        extension.setDirection(DcMotor.Direction.REVERSE); // Forward should EXTEND.
+//        pivot.setDirection(DcMotor.Direction.REVERSE); // Forward should pivot UP, or away from the stowed position.
+//
+////        pivot.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//        extension.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+//        pivot.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+//        pivot_home_pos = 0;
 
 
         telemetry.addData("Status", "Initialized");
@@ -155,8 +153,8 @@ public class TeleOpControlOpMode extends OpMode
     @Override
     public void start() {
         runtime.reset();
-        pivotMode = PivotModes.HOLD;
-        pivot.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//        pivotMode = PivotModes.HOLD;
+//        pivot.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
     /*
@@ -172,27 +170,27 @@ public class TeleOpControlOpMode extends OpMode
         double lateral =  -gamepad1.right_stick_x;
         double yaw     =  -gamepad1.left_stick_x;
 
-        boolean intakeInButton = gamepad1.a;
-        boolean intakeOutButton = gamepad1.b;
-        boolean intakeOffButton = gamepad1.x;
-        // This conditional reduces ambiguity when multiple buttons are pressed.
-        if (intakeInButton && intakeOutButton) {
-            intakeInButton = false;
-        } else if (intakeOffButton && (intakeInButton || intakeOutButton)) {
-            intakeInButton = intakeOutButton = false;
-        }
+//        boolean intakeInButton = gamepad1.a;
+//        boolean intakeOutButton = gamepad1.b;
+//        boolean intakeOffButton = gamepad1.x;
+//        // This conditional reduces ambiguity when multiple buttons are pressed.
+//        if (intakeInButton && intakeOutButton) {
+//            intakeInButton = false;
+//        } else if (intakeOffButton && (intakeInButton || intakeOutButton)) {
+//            intakeInButton = intakeOutButton = false;
+//        }
+//
+//        boolean extensionOutButton = gamepad1.left_trigger > 0.2;
+//        boolean extensionInButton = gamepad1.left_bumper;
+//        if (extensionOutButton && extensionInButton) {
+//            extensionOutButton = false;
+//        }
 
-        boolean extensionOutButton = gamepad1.left_trigger > 0.2;
-        boolean extensionInButton = gamepad1.left_bumper;
-        if (extensionOutButton && extensionInButton) {
-            extensionOutButton = false;
-        }
-
-        boolean pivotUpButton = gamepad1.right_bumper;
-        boolean pivotDownButton = gamepad1.right_trigger > 0.2;
-        if (pivotUpButton && pivotDownButton) {
-            pivotUpButton = false;
-        }
+//        boolean pivotUpButton = gamepad1.right_bumper;
+//        boolean pivotDownButton = gamepad1.right_trigger > 0.2;
+//        if (pivotUpButton && pivotDownButton) {
+//            pivotUpButton = false;
+//        }
 
         // DRIVE CODE
         // Combine the joystick requests for each axis-motion to determine each wheel's power.
@@ -233,34 +231,34 @@ public class TeleOpControlOpMode extends OpMode
             */
 
         // INTAKE CODE
-        if (intakeInButton) {
-            intakePower = INTAKE_IN_POWER;
-        } else if (intakeOutButton) {
-            intakePower = INTAKE_OUT_POWER;
-        } else if (intakeOffButton) {
-            intakePower = 0.0;
-        }
+//        if (intakeInButton) {
+//            intakePower = INTAKE_IN_POWER;
+//        } else if (intakeOutButton) {
+//            intakePower = INTAKE_OUT_POWER;
+//        } else if (intakeOffButton) {
+//            intakePower = 0.0;
+//        }
 
         // EXTENSION CODE
-        double extensionPower;
-        if (extensionOutButton) {
-            extensionPower = EXTENSION_OUT_POWER;
-        } else if (extensionInButton) {
-            extensionPower = EXTENSION_IN_POWER;
-        } else {
-            extensionPower = 0;
-        }
-
-        // Determine pivot mode
-        if (pivotUpButton) {
-            pivotMode = PivotModes.UP;
-            pivot_target_pos += 5;
-        } else if (pivotDownButton) {
-            pivotMode = PivotModes.DOWN;
-            pivot_target_pos -= 5;
-        } else {
-            pivotMode = PivotModes.HOLD;
-        }
+//        double extensionPower;
+//        if (extensionOutButton) {
+//            extensionPower = EXTENSION_OUT_POWER;
+//        } else if (extensionInButton) {
+//            extensionPower = EXTENSION_IN_POWER;
+//        } else {
+//            extensionPower = 0;
+//        }
+//
+//        // Determine pivot mode
+//        if (pivotUpButton) {
+//            pivotMode = PivotModes.UP;
+//            pivot_target_pos += 5;
+//        } else if (pivotDownButton) {
+//            pivotMode = PivotModes.DOWN;
+//            pivot_target_pos -= 5;
+//        } else {
+//            pivotMode = PivotModes.HOLD;
+//        }
 
         // Make sure that motor is in the correct control mode.
         // If there is a mismatch, we are transferring into that mode.
@@ -283,33 +281,33 @@ public class TeleOpControlOpMode extends OpMode
 
 
         // WRITE EFFECTORS
-        leftFrontDrive.setPower(leftFrontPower);
-        rightFrontDrive.setPower(rightFrontPower);
-        leftBackDrive.setPower(leftBackPower);
-        rightBackDrive.setPower(rightBackPower);
+        leftFront.setPower(leftFrontPower);
+        rightFront.setPower(rightFrontPower);
+        leftBack.setPower(leftBackPower);
+        rightBack.setPower(rightBackPower);
 
 
-        intake.setPower(intakePower);
-        extension.setPower(extensionPower);
-        pivot.setTargetPosition(pivot_target_pos);
-          pivot.setPower(1.0);
-
-        String pivot_mode_str;
-        if (pivotMode == PivotModes.UP) {
-            pivot_mode_str = "UP";
-        } else if (pivotMode == PivotModes.DOWN) {
-            pivot_mode_str = "DOWN";
-        } else {
-            pivot_mode_str = "HOLD";
-        }
+//        intake.setPower(intakePower);
+//        extension.setPower(extensionPower);
+//        pivot.setTargetPosition(pivot_target_pos);
+//          pivot.setPower(1.0);
+//
+//        String pivot_mode_str;
+//        if (pivotMode == PivotModes.UP) {
+//            pivot_mode_str = "UP";
+//        } else if (pivotMode == PivotModes.DOWN) {
+//            pivot_mode_str = "DOWN";
+//        } else {
+//            pivot_mode_str = "HOLD";
+//        }
         // UPDATE TELEMETRY
         telemetry.addData("Status", "Run Time: " + runtime.toString());
         telemetry.addData("Front left/Right", "%4.2f, %4.2f", leftFrontPower, rightFrontPower);
         telemetry.addData("Back  left/Right", "%4.2f, %4.2f", leftBackPower, rightBackPower);
-        telemetry.addData("Intake", "%%4.2f", intakePower);
-        telemetry.addData("Extension", "%4.2f", extension.getPower());
-        telemetry.addData("Pivot Current/Target/power", "%d, %d, %4.2f", pivot.getCurrentPosition(), pivot.getTargetPosition(),pivot.getPower());
-        telemetry.addData("Pivot MODE", "%s", pivot_mode_str);
+//        telemetry.addData("Intake", "%%4.2f", intakePower);
+//        telemetry.addData("Extension", "%4.2f", extension.getPower());
+//        telemetry.addData("Pivot Current/Target/power", "%d, %d, %4.2f", pivot.getCurrentPosition(), pivot.getTargetPosition(),pivot.getPower());
+//        telemetry.addData("Pivot MODE", "%s", pivot_mode_str);
         telemetry.update();
     }
 
