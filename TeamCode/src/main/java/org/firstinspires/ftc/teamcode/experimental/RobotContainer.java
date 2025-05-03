@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.experimental;
 // Import Constants
 //import static org.firstinspires.ftc.teamcode.experimental.ArmSubsystem;
 //import static org.firstinspires.ftc.teamcode.DriveSubsystem;
-//import static org.firstinspires.ftc.teamcode.IntakeSubsystem;
+//import static org.firstinspires.ftc.teamcode.experimental.IntakeSubsystem;
 
 import android.annotation.SuppressLint;
 
@@ -13,7 +13,6 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.IntakeSubsystem;
 import org.firstinspires.ftc.teamcode.MecanumDrive;
 
 // @Disabled
