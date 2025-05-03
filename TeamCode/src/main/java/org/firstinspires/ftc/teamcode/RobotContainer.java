@@ -13,13 +13,9 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.ArmSubsystem;
-import org.firstinspires.ftc.teamcode.MecanumDrive;
-import org.firstinspires.ftc.teamcode.IntakeSubsystem;
-
 // @Disabled
 
-@TeleOp(group = "Drive", name = "TeleOp")
+@TeleOp(name = "Drive", group = "TeleOp")
 
 public class RobotContainer extends LinearOpMode {
 

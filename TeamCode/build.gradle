@@ -18,6 +18,15 @@ apply from: '../build.dependencies.gradle'
 android {
     namespace = 'org.firstinspires.ftc.teamcode'
 
+    sourceSets {
+        getByName("main") {
+            java {
+                exclude("org/firstinspires/ftc/teamcode/experimental/**")
+            }
+        }
+    }
+
+
     packagingOptions {
         jniLibs.useLegacyPackaging true
     }
@@ -36,13 +45,4 @@ dependencies {
     implementation "com.acmerobotics.roadrunner:core:1.0.1"
     implementation "com.acmerobotics.roadrunner:actions:1.0.1"
     implementation "com.acmerobotics.dashboard:dashboard:0.4.16"
-}
-
-sourceSets {
-    main {
-        java {
-            exclude 'org/firstinspires/ftc/teamcode/experimental/**'
-            exclude 'org/firstinspires/ftc/teamcode/inProgress/**'
-        }
-    }
 }

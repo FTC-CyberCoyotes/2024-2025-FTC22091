@@ -114,24 +114,27 @@ public class MecanumDriveTrain {
         rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rightRear.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
+        /*
         // Initialize IMU
         try {
             imu = hardwareMap.get(IMU.class, IMU_NAME);
-            IMU.Parameters parameters = new IMU.Parameters(
-                    AxesOrder.ZYX,
-                    AxesReference.INTRINSIC,
-                    AngleUnit.RADIANS,
-                    0);
+            IMU.Parameters parameters = new IMU.Parameters();
+            parameters.angleUnit = AngleUnit.RADIANS;
+            parameters.axesOrder = AxesOrder.ZYX;
+            parameters.axesReference = AxesReference.INTRINSIC;
             imu.initialize(parameters);
         } catch (Exception e) {
             // If we can't get the IMU, print an error message
             System.out.println("IMU initialization failed: " + e.getMessage());
         }
 
+         */
+
         // Set bulk caching mode to improve performance
         for (LynxModule module : hardwareMap.getAll(LynxModule.class)) {
             module.setBulkCachingMode(LynxModule.BulkCachingMode.AUTO);
         }
+
     }
 
     /**

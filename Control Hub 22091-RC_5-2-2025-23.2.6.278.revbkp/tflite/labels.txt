@@ -1,0 +1,7 @@
+0 BlueDuck
+1 BlueShippingHub
+2 TeamElement
+3 RedMarker
+4 BlueMarkers
+5 RedDuck
+6 RedShippingHub

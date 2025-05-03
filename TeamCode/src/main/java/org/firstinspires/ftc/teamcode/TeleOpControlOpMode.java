@@ -30,6 +30,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.hardware.lynx.commands.core.LynxResetMotorEncoderCommand;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
@@ -53,9 +54,11 @@ import org.firstinspires.ftc.robotcore.external.navigation.CurrentUnit;
  * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list
  */
 
+@Disabled
+
 /*** Everybot Code ***/
 
-@TeleOp(name="TeleOp Control", group="Teleop")
+@TeleOp(name="EVERYBOT", group="Teleop")
 
 public class TeleOpControlOpMode extends OpMode
 {
@@ -104,14 +107,14 @@ public class TeleOpControlOpMode extends OpMode
         // Initialize the hardware variables. Note that the strings used here as parameters
         // to 'get' must correspond to the names assigned during the robot configuration
         // step (using the FTC Robot Controller app on the phone).
-        leftFrontDrive  = hardwareMap.get(CRServo.class, "left_front_drive");
-        leftBackDrive  = hardwareMap.get(DcMotor.class, "left_back_drive");
-        rightFrontDrive = hardwareMap.get(CRServo.class, "right_front_drive");
-        rightBackDrive = hardwareMap.get(DcMotor.class, "right_back_drive");
+//        leftFrontDrive  = hardwareMap.get(CRServo.class, "left_front_drive");
+//        leftBackDrive  = hardwareMap.get(DcMotor.class, "left_back_drive");
+//        rightFrontDrive = hardwareMap.get(CRServo.class, "right_front_drive");
+//        rightBackDrive = hardwareMap.get(DcMotor.class, "right_back_drive");
 
-        intake = hardwareMap.get(CRServo.class, "intake");
-        extension = hardwareMap.get(DcMotor.class, "extension");
-        pivot = hardwareMap.get(DcMotorEx.class, "pivot");
+//        intake = hardwareMap.get(CRServo.class, "intake");
+//        extension = hardwareMap.get(DcMotor.class, "extension");
+//        pivot = hardwareMap.get(DcMotorEx.class, "pivot");
 
         // TODO: Make sure all motors are facing the correct direction. Go one at a time.
         leftFrontDrive.setDirection(CRServo.Direction.REVERSE);
