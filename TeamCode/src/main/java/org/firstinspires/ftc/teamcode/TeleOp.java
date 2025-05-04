@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.tuning;
+package org.firstinspires.ftc.teamcode;
 
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
@@ -7,29 +7,26 @@ import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.PoseVelocity2d;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.CRServo;
 
-import org.firstinspires.ftc.teamcode.Drawing;
-import org.firstinspires.ftc.teamcode.MecanumDrive;
-import org.firstinspires.ftc.teamcode.TankDrive;
+import org.firstinspires.ftc.teamcode.tuning.TuningOpModes;
 
-public class LocalizationTest extends LinearOpMode {
+@com.qualcomm.robotcore.eventloop.opmode.TeleOp(name="Mark 4", group="Teleop")
+
+public class TeleOp extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
-        Servo intakeServo = null;
+        CRServo intakeServo = null;
 
+        // Servo power constants
+        double INTAKE_IN_POWER = 1.0;
+        double INTAKE_OUT_POWER = -1.0;
+        double INTAKE_OFF_POWER = 0.0;
+        double intakePower = INTAKE_OFF_POWER;
 
-        // TODO Test intake power
-    double INTAKE_IN_POWER = 1.0;
-    double INTAKE_OUT_POWER = -1.0;
-    double INTAKE_OFF_POWER = 0.0;
-
-    double intakePower = INTAKE_OFF_POWER;
-
-        intakeServo = hardwareMap.get(Servo.class, "intakeServo");
-
+        intakeServo = hardwareMap.get(CRServo.class, "intakeServo");
 
         if (TuningOpModes.DRIVE_CLASS.equals(MecanumDrive.class)) {
             MecanumDrive drive = new MecanumDrive(hardwareMap, new Pose2d(0, 0, 0));
@@ -45,15 +42,16 @@ public class LocalizationTest extends LinearOpMode {
                         -gamepad1.right_stick_x
                 ));
 
-        boolean intakeInButton = gamepad1.a;
-        boolean intakeOutButton = gamepad1.b;
-        boolean intakeOffButton = gamepad1.x;
-        // This conditional reduces ambiguity when multiple buttons are pressed.
-        if (intakeInButton && intakeOutButton) {
-            intakeInButton = false;
-        } else if (intakeOffButton && (intakeInButton || intakeOutButton)) {
-            intakeInButton = intakeOutButton = false;
-        }
+                boolean intakeInButton = gamepad1.a;
+                boolean intakeOutButton = gamepad1.b;
+                boolean intakeOffButton = gamepad1.x;
+
+                // This conditional reduces ambiguity when multiple buttons are pressed.
+                if (intakeInButton && intakeOutButton) {
+                    intakeInButton = false;
+                } else if (intakeOffButton && (intakeInButton || intakeOutButton)) {
+                    intakeInButton = intakeOutButton = false;
+                }
 
                 // INTAKE CODE
                 if (intakeInButton) {
@@ -61,8 +59,11 @@ public class LocalizationTest extends LinearOpMode {
                 } else if (intakeOutButton) {
                     intakePower = INTAKE_OUT_POWER;
                 } else if (intakeOffButton) {
-                    intakePower = 0.0;
+                    intakePower = INTAKE_OFF_POWER;
                 }
+
+                // CRITICAL FIX: Actually set the servo power!
+                intakeServo.setPower(intakePower);
 
                 drive.updatePoseEstimate();
 
@@ -70,6 +71,7 @@ public class LocalizationTest extends LinearOpMode {
                 telemetry.addData("x", pose.position.x);
                 telemetry.addData("y", pose.position.y);
                 telemetry.addData("heading (deg)", Math.toDegrees(pose.heading.toDouble()));
+                telemetry.addData("Intake Power", intakePower); // Added servo telemetry
                 telemetry.update();
 
                 TelemetryPacket packet = new TelemetryPacket();
@@ -91,7 +93,6 @@ public class LocalizationTest extends LinearOpMode {
                         -gamepad1.right_stick_x
                 ));
 
-
                 drive.updatePoseEstimate();
 
                 Pose2d pose = drive.localizer.getPose();
@@ -108,8 +109,5 @@ public class LocalizationTest extends LinearOpMode {
         } else {
             throw new RuntimeException();
         }
-
     }
-
-
 }
