@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.hardware.CRServo;
 
 import org.firstinspires.ftc.teamcode.tuning.TuningOpModes;
 
-@com.qualcomm.robotcore.eventloop.opmode.TeleOp(name="Mark 4", group="Teleop")
+@com.qualcomm.robotcore.eventloop.opmode.TeleOp(name="Mark 5 TeleOp", group="Teleop")
 
 public class TeleOp extends LinearOpMode {
     @Override

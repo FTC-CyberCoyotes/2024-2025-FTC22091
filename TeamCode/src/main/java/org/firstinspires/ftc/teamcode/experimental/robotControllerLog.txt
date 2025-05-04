@@ -17474,7 +17474,7 @@
 05-02 22:10:32.105  1880  2051 E OpModeManager: User code threw an uncaught exception
 05-02 22:10:32.112  1880  2051 E OpModeManager: java.lang.IllegalArgumentException: Unable to find a hardware device with name "left_front_drive" and type CRServo
 05-02 22:10:32.114  1880  2051 E OpModeManager: 	at com.qualcomm.robotcore.hardware.HardwareMap.get(HardwareMap.java:213)
-05-02 22:10:32.117  1880  2051 E OpModeManager: 	at org.firstinspires.ftc.teamcode.TeleOpControlOpMode.init(TeleOpControlOpMode.java:107)
+05-02 22:10:32.117  1880  2051 E OpModeManager: 	at org.firstinspires.ftc.teamcode.TeleOpEVERYBOT.init(TeleOpControlOpMode.java:107)
 05-02 22:10:32.119  1880  2031 V Robocol : sending CMD_NOTIFY_INIT_OP_MODE(1900), attempt: 0
 05-02 22:10:32.123  1880  2051 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpMode.internalRunOpMode(OpMode.java:191)
 05-02 22:10:32.132  1880  2051 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpModeInternal.lambda$internalInit$1$com-qualcomm-robotcore-eventloop-opmode-OpModeInternal(OpModeInternal.java:181)
@@ -17489,7 +17489,7 @@
 05-02 22:10:32.153  1880  2051 E OpModeManager: User code threw an uncaught exception
 05-02 22:10:32.155  1880  2051 E OpModeManager: java.lang.IllegalArgumentException: Unable to find a hardware device with name "left_front_drive" and type CRServo
 05-02 22:10:32.156  1880  2051 E OpModeManager: 	at com.qualcomm.robotcore.hardware.HardwareMap.get(HardwareMap.java:213)
-05-02 22:10:32.157  1880  2051 E OpModeManager: 	at org.firstinspires.ftc.teamcode.TeleOpControlOpMode.init(TeleOpControlOpMode.java:107)
+05-02 22:10:32.157  1880  2051 E OpModeManager: 	at org.firstinspires.ftc.teamcode.TeleOpEVERYBOT.init(TeleOpControlOpMode.java:107)
 05-02 22:10:32.157  1880  2051 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpMode.internalRunOpMode(OpMode.java:191)
 05-02 22:10:32.159  1880  2031 V Robocol : sending CMD_SHOW_STACKTRACE(1902), attempt: 0
 05-02 22:10:32.159  1880  2051 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpModeInternal.lambda$internalInit$1$com-qualcomm-robotcore-eventloop-opmode-OpModeInternal(OpModeInternal.java:181)
@@ -18701,7 +18701,7 @@
 05-02 22:13:39.047  2542  2645 E OpModeManager: User code threw an uncaught exception
 05-02 22:13:39.051  2542  2645 E OpModeManager: java.lang.IllegalArgumentException: Unable to find a hardware device with name "intake" and type CRServo
 05-02 22:13:39.053  2542  2645 E OpModeManager: 	at com.qualcomm.robotcore.hardware.HardwareMap.get(HardwareMap.java:213)
-05-02 22:13:39.055  2542  2645 E OpModeManager: 	at org.firstinspires.ftc.teamcode.TeleOpControlOpMode.init(TeleOpControlOpMode.java:112)
+05-02 22:13:39.055  2542  2645 E OpModeManager: 	at org.firstinspires.ftc.teamcode.TeleOpEVERYBOT.init(TeleOpControlOpMode.java:112)
 05-02 22:13:39.057  2542  2633 V Robocol : sending CMD_NOTIFY_INIT_OP_MODE(257), attempt: 0
 05-02 22:13:39.060  2542  2645 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpMode.internalRunOpMode(OpMode.java:191)
 05-02 22:13:39.065  2542  2645 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpModeInternal.lambda$internalInit$1$com-qualcomm-robotcore-eventloop-opmode-OpModeInternal(OpModeInternal.java:181)
@@ -18716,7 +18716,7 @@
 05-02 22:13:39.088  2542  2645 E OpModeManager: User code threw an uncaught exception
 05-02 22:13:39.090  2542  2645 E OpModeManager: java.lang.IllegalArgumentException: Unable to find a hardware device with name "intake" and type CRServo
 05-02 22:13:39.091  2542  2645 E OpModeManager: 	at com.qualcomm.robotcore.hardware.HardwareMap.get(HardwareMap.java:213)
-05-02 22:13:39.092  2542  2645 E OpModeManager: 	at org.firstinspires.ftc.teamcode.TeleOpControlOpMode.init(TeleOpControlOpMode.java:112)
+05-02 22:13:39.092  2542  2645 E OpModeManager: 	at org.firstinspires.ftc.teamcode.TeleOpEVERYBOT.init(TeleOpControlOpMode.java:112)
 05-02 22:13:39.092  2542  2645 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpMode.internalRunOpMode(OpMode.java:191)
 05-02 22:13:39.095  2542  2645 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpModeInternal.lambda$internalInit$1$com-qualcomm-robotcore-eventloop-opmode-OpModeInternal(OpModeInternal.java:181)
 05-02 22:13:39.095  2542  2645 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpModeInternal$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
@@ -19430,7 +19430,7 @@
 05-02 22:15:06.908  2896  3021 V RobotCore: thread: ...terminating 'OpModeThread'
 05-02 22:15:06.912  2896  2995 E OpModeManager: User code threw an uncaught exception
 05-02 22:15:06.922  2896  2995 E OpModeManager: java.lang.NullPointerException: Attempt to invoke interface method 'void com.qualcomm.robotcore.hardware.CRServo.setDirection(com.qualcomm.robotcore.hardware.DcMotorSimple$Direction)' on a null object reference
-05-02 22:15:06.924  2896  2995 E OpModeManager: 	at org.firstinspires.ftc.teamcode.TeleOpControlOpMode.init(TeleOpControlOpMode.java:117)
+05-02 22:15:06.924  2896  2995 E OpModeManager: 	at org.firstinspires.ftc.teamcode.TeleOpEVERYBOT.init(TeleOpControlOpMode.java:117)
 05-02 22:15:06.927  2896  2995 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpMode.internalRunOpMode(OpMode.java:191)
 05-02 22:15:06.932  2896  2995 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpModeInternal.lambda$internalInit$1$com-qualcomm-robotcore-eventloop-opmode-OpModeInternal(OpModeInternal.java:181)
 05-02 22:15:06.934  2896  2986 V Robocol : sending CMD_NOTIFY_INIT_OP_MODE(417), attempt: 0
@@ -19444,7 +19444,7 @@
 05-02 22:15:06.947  2896  2995 E OpModeManager: 	at java.lang.Thread.run(Thread.java:761)
 05-02 22:15:06.955  2896  2995 E OpModeManager: User code threw an uncaught exception
 05-02 22:15:06.961  2896  2995 E OpModeManager: java.lang.NullPointerException: Attempt to invoke interface method 'void com.qualcomm.robotcore.hardware.CRServo.setDirection(com.qualcomm.robotcore.hardware.DcMotorSimple$Direction)' on a null object reference
-05-02 22:15:06.962  2896  2995 E OpModeManager: 	at org.firstinspires.ftc.teamcode.TeleOpControlOpMode.init(TeleOpControlOpMode.java:117)
+05-02 22:15:06.962  2896  2995 E OpModeManager: 	at org.firstinspires.ftc.teamcode.TeleOpEVERYBOT.init(TeleOpControlOpMode.java:117)
 05-02 22:15:06.962  2896  2995 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpMode.internalRunOpMode(OpMode.java:191)
 05-02 22:15:06.963  2896  2995 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpModeInternal.lambda$internalInit$1$com-qualcomm-robotcore-eventloop-opmode-OpModeInternal(OpModeInternal.java:181)
 05-02 22:15:06.964  2896  2995 E OpModeManager: 	at com.qualcomm.robotcore.eventloop.opmode.OpModeInternal$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
