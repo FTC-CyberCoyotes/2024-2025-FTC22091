@@ -10,21 +10,22 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
-
 import org.firstinspires.ftc.teamcode.tuning.TuningOpModes;
 
-@com.qualcomm.robotcore.eventloop.opmode.TeleOp(name="Mark 5 TeleOp", group="Teleop")
+@com.qualcomm.robotcore.eventloop.opmode.TeleOp(name="Mark 6 TeleOp", group="Teleop")
 
 public class TeleOp extends LinearOpMode {
 
     // Pivot mode enum
     private enum PivotModes {UP, HOLD, DOWN}
+
     @Override
     public void runOpMode() throws InterruptedException {
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
         CRServo intakeServo = null;
         DcMotorEx pivot = null;
+        DcMotor extension = null;  // Added extension motor
 
         // Servo power constants
         double INTAKE_IN_POWER = 1.0;
@@ -32,7 +33,7 @@ public class TeleOp extends LinearOpMode {
         double INTAKE_OFF_POWER = 0.0;
         double intakePower = INTAKE_OFF_POWER;
 
-        // TODO Test the pivot powers
+        // Pivot powers
         double PIVOT_UP_POWER = 0.35;
         double PIVOT_DOWN_POWER = -0.35;
         double PIVOT_HOLD_POWER = 0.001;
@@ -41,13 +42,23 @@ public class TeleOp extends LinearOpMode {
         int pivot_target_pos = 0;
         int pivot_home_pos = 0;
 
+        // Extension power constants
+        double EXTENSION_OUT_POWER = 0.25;
+        double EXTENSION_IN_POWER = -0.25;
+
+        // Initialize hardware
         intakeServo = hardwareMap.get(CRServo.class, "intakeServo");
         pivot = hardwareMap.get(DcMotorEx.class, "pivotMotor");
+        extension = hardwareMap.get(DcMotor.class, "extensionMotor");  // Initialize extension motor
 
-        // Set pivot direction and mode
-        pivot.setDirection(DcMotor.Direction.FORWARD); // Forward should pivot UP, or away from the stowed position.
+        // Set motor directions and behaviors
+        pivot.setDirection(DcMotor.Direction.FORWARD);
         pivot.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         pivot_home_pos = 0;
+
+        // Set extension direction and mode (from EVERYBOT)
+        extension.setDirection(DcMotor.Direction.REVERSE); // Forward should EXTEND
+        extension.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         if (TuningOpModes.DRIVE_CLASS.equals(MecanumDrive.class)) {
             MecanumDrive drive = new MecanumDrive(hardwareMap, new Pose2d(0, 0, 0));
@@ -83,6 +94,13 @@ public class TeleOp extends LinearOpMode {
                 boolean pivotDownButton = gamepad1.right_trigger > 0.2;
                 if (pivotUpButton && pivotDownButton) {
                     pivotUpButton = false;
+                }
+
+                // Extension controls (from EVERYBOT)
+                boolean extensionOutButton = gamepad1.left_trigger > 0.2;
+                boolean extensionInButton = gamepad1.left_bumper;
+                if (extensionOutButton && extensionInButton) {
+                    extensionOutButton = false;
                 }
 
                 // INTAKE CODE
@@ -131,6 +149,19 @@ public class TeleOp extends LinearOpMode {
                 pivot.setTargetPosition(pivot_target_pos);
                 pivot.setPower(pivotPower);
 
+                // EXTENSION CODE (from EVERYBOT)
+                double extensionPower;
+                if (extensionOutButton) {
+                    extensionPower = EXTENSION_OUT_POWER;
+                } else if (extensionInButton) {
+                    extensionPower = EXTENSION_IN_POWER;
+                } else {
+                    extensionPower = 0;
+                }
+
+                // Apply extension power
+                extension.setPower(extensionPower);
+
                 drive.updatePoseEstimate();
 
                 Pose2d pose = drive.localizer.getPose();
@@ -150,6 +181,7 @@ public class TeleOp extends LinearOpMode {
                 telemetry.addData("Intake Power", intakePower);
                 telemetry.addData("Pivot Current/Target/power", "%d, %d, %4.2f", pivot.getCurrentPosition(), pivot.getTargetPosition(), pivot.getPower());
                 telemetry.addData("Pivot MODE", "%s", pivot_mode_str);
+                telemetry.addData("Extension", "%4.2f", extension.getPower());  // Added extension telemetry
                 telemetry.update();
 
                 TelemetryPacket packet = new TelemetryPacket();
