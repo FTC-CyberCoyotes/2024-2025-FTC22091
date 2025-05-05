@@ -178,10 +178,28 @@ public class TeleOp extends LinearOpMode {
                 telemetry.addData("x", pose.position.x);
                 telemetry.addData("y", pose.position.y);
                 telemetry.addData("heading (deg)", Math.toDegrees(pose.heading.toDouble()));
+
+                // ============ INTAKE TELEMETRY ============
                 telemetry.addData("Intake Power", intakePower);
+
+                // ============ PIVOT TELEMETRY ============
                 telemetry.addData("Pivot Current/Target/power", "%d, %d, %4.2f", pivot.getCurrentPosition(), pivot.getTargetPosition(), pivot.getPower());
                 telemetry.addData("Pivot MODE", "%s", pivot_mode_str);
-                telemetry.addData("Extension", "%4.2f", extension.getPower());  // Added extension telemetry
+
+                // ============ EXTENSION TELEMETRY ============
+                // Show current extension state
+                // Extension is using RUN_WITHOUT_ENCODER by default currently
+                telemetry.addData("Extension Power", "%4.2f", extension.getPower());
+                telemetry.addData("Extension Buttons", "Out: %b, In: %b", extensionOutButton, extensionInButton);
+
+                if (extension.getMode() == DcMotor.RunMode.RUN_USING_ENCODER) {
+                    telemetry.addData("Extension Position", "%d", extension.getCurrentPosition());
+                    telemetry.addData("Extension Velocity", "%.1f", ((DcMotorEx)extension).getVelocity());
+                }
+
+                // Debug extension state information
+//                telemetry.addData("Extension Direction", "%s", extension.getDirection());
+//                telemetry.addData("Extension Zero Power", "%s", extension.getZeroPowerBehavior());
                 telemetry.update();
 
                 TelemetryPacket packet = new TelemetryPacket();
@@ -189,6 +207,7 @@ public class TeleOp extends LinearOpMode {
                 Drawing.drawRobot(packet.fieldOverlay(), pose);
                 FtcDashboard.getInstance().sendTelemetryPacket(packet);
             }
+
         } else if (TuningOpModes.DRIVE_CLASS.equals(TankDrive.class)) {
             TankDrive drive = new TankDrive(hardwareMap, new Pose2d(0, 0, 0));
 
