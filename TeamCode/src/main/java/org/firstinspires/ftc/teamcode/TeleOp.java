@@ -12,7 +12,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import org.firstinspires.ftc.teamcode.tuning.TuningOpModes;
 
-@com.qualcomm.robotcore.eventloop.opmode.TeleOp(name="Mark 6 TeleOp", group="Teleop")
+@com.qualcomm.robotcore.eventloop.opmode.TeleOp(name="TeleOp - Mark 8", group="Teleop")
 
 public class TeleOp extends LinearOpMode {
 
@@ -43,8 +43,8 @@ public class TeleOp extends LinearOpMode {
         int pivot_home_pos = 0;
 
         // Extension power constants
-        double EXTENSION_OUT_POWER = 0.25;
-        double EXTENSION_IN_POWER = -0.25;
+        double EXTENSION_OUT_POWER = 0.40; // TODO Adjust slide power as needed
+        double EXTENSION_IN_POWER = -0.40; // TODO Adjust slide power as needed
 
         // Initialize hardware
         intakeServo = hardwareMap.get(CRServo.class, "intakeServo");
@@ -91,14 +91,14 @@ public class TeleOp extends LinearOpMode {
 
                 // Pivot controls
                 boolean pivotUpButton = gamepad1.right_bumper;
-                boolean pivotDownButton = gamepad1.right_trigger > 0.2;
+                boolean pivotDownButton = gamepad1.left_bumper;
                 if (pivotUpButton && pivotDownButton) {
                     pivotUpButton = false;
                 }
 
                 // Extension controls (from EVERYBOT)
-                boolean extensionOutButton = gamepad1.left_trigger > 0.2;
-                boolean extensionInButton = gamepad1.left_bumper;
+                boolean extensionOutButton = gamepad1.right_trigger > 0.1;
+                boolean extensionInButton = gamepad1.left_trigger > 0.1;
                 if (extensionOutButton && extensionInButton) {
                     extensionOutButton = false;
                 }
@@ -198,8 +198,8 @@ public class TeleOp extends LinearOpMode {
                 }
 
                 // Debug extension state information
-//                telemetry.addData("Extension Direction", "%s", extension.getDirection());
-//                telemetry.addData("Extension Zero Power", "%s", extension.getZeroPowerBehavior());
+                // telemetry.addData("Extension Direction", "%s", extension.getDirection());
+                // telemetry.addData("Extension Zero Power", "%s", extension.getZeroPowerBehavior());
                 telemetry.update();
 
                 TelemetryPacket packet = new TelemetryPacket();
